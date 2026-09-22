@@ -35,6 +35,7 @@ Every answer the system produces names at least one source document.
 **Why this target:**
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
+Having multiple source documents helps the reader solidify their answer instead of still being unsure with just one source.
 
 ---
 
@@ -57,6 +58,8 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
+When I ask a question, my document would return the answer with 1 or 2 sentences, not phrases.
+
 <!-- YOU WRITE THIS ONE.
 
      How would you know if your chunks were the right size? Name something
@@ -72,12 +75,13 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
-
+Having a precise answer over lengthy ones are better suited for the readers and getting the information they want faster.
 
 ---
 
 ## 5. Your choice
+
+For at least 4 of 5 test questions that ask for advice, it returns a single next step action, like one sentence, and cites the thread filename that contains that step.
 
 <!-- YOU WRITE THIS ONE TOO.
 
@@ -87,10 +91,8 @@ in at least 4 of 5 tries.
      present — anything, as long as it names a number or an observable
      outcome. -->
 
-
-
 **Why this target:**
-
+Advice threads should have clear actions that the person can take instead of a vague summary and 4 of 5 questions allows for ambiguos threads.
 
 
 ---
