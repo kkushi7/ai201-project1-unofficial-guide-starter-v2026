@@ -1,6 +1,6 @@
 # The Unofficial Guide
 
-<!-- Replace this line with your name and which corpus you picked. -->
+Kushi Kumbagowdana, Corpus: advice_threads
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
@@ -27,10 +27,12 @@
 
      Milestone 5. -->
 
+     I pIcked corpus advice_threads which answers questions that students have about college and how they should go about certain actions. It has short and simple answers within the threads which helps the readers get straight to the point and not worry about vague summarries to their simple questions. 
+
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** 2 sentences (around 200-400 characters)
+**Overlap:** 1 sentence
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -41,6 +43,8 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+
+I picked these numbers because this is an advice thread, so people tend to keep answers concise over having long paragraphs and short phrases as it requires more detail than that. 
 
 ## Sample Chunks
 
