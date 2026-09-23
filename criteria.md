@@ -25,6 +25,7 @@ contains the answer.
 **Why this target:**
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
+I chose 4 of 5 since the wording of the questions could could be different to the data it needs to retrieved.
 
 ---
 
@@ -53,29 +54,17 @@ in at least 4 of 5 tries.
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
-
+I picked the cutoff of 0.62 because when measuring distances the largest in-corpus was 0.52 and the smallest out of scope was 0.721 so there is a clear gap with 0.62 being the midpoint and separting the gorups. I chose 4 of 5 as it gives way for boderline cases with short and informal wording.
 ---
 
 ## 4. Something about your chunks
 
-When I ask a question, my document would return the answer with 1 or 2 sentences, not phrases.
-
-<!-- YOU WRITE THIS ONE.
-
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
-
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
+When I ask a question, my document would return the answer in chunks of 1 or 2 sentences, not long paragraphs.
 
 
 
 **Why this target:**
-Having a precise answer over lengthy ones are better suited for the readers and getting the information they want faster.
+Having a precise answer with 1 or 2 sentences over lengthy ones are better suited for the readers and getting the information they want faster since this is an advice thread.
 
 ---
 
@@ -83,16 +72,9 @@ Having a precise answer over lengthy ones are better suited for the readers and 
 
 For at least 4 of 5 test questions that ask for advice, it returns a single next step action, like one sentence, and cites the thread filename that contains that step.
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
 
 **Why this target:**
-Advice threads should have clear actions that the person can take instead of a vague summary and 4 of 5 questions allows for ambiguos threads.
+Advice threads should have clear actions that the person can take instead of a vague summary and 4 of 5 questions allows for ambiguos answers without proper actions.
 
 
 ---
