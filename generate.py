@@ -103,7 +103,8 @@ def _wait_for_slot() -> None:
             flush=True,
         )
         time.sleep(sleep_for)
-        _call_times[:] = [t for t in _call_times if time.monotonic() - t < 60.0]
+        _call_times[:] = [
+            t for t in _call_times if time.monotonic() - t < 60.0]
 
 
 def _check_budget() -> None:
@@ -140,8 +141,10 @@ def _record_tokens(response) -> None:
         meta = getattr(response, "usage_metadata", None)
         if meta is None:
             return
-        _session_prompt_tokens += int(getattr(meta, "prompt_token_count", 0) or 0)
-        _session_output_tokens += int(getattr(meta, "candidates_token_count", 0) or 0)
+        _session_prompt_tokens += int(getattr(meta,
+                                      "prompt_token_count", 0) or 0)
+        _session_output_tokens += int(getattr(meta,
+                                      "candidates_token_count", 0) or 0)
     except Exception:
         pass  # accounting never breaks the thing it is accounting for
 
@@ -276,10 +279,16 @@ def generate(prompt: str, system: str | None = None, cache: bool = True) -> str:
 GROUNDING_INSTRUCTION = """You answer questions using only the documents provided to you.
 
 Rules:
-- Use only the information in the documents below. Do not use anything you know from elsewhere.
-- If the documents don't cover the question, say you don't have enough information. Do not guess.
-- Name the document your answer came from, using the filename given in each excerpt.
-- Be brief. Two or three sentences is usually enough."""
+- Use only information present in the "Documents" section below. Do not add, invent, infer, or assume anything from outside sources or training data.
+- If the excerpts do not contain enough information to answer, reply exactly:
+  "I don't have enough information in the provided documents to answer that."
+  and stop — do not guess.
+- For every factual claim, include a Source line naming the supporting filename, e.g.:
+  Source: thread_professor_email.txt
+- If you base a recommendation or next step on the documents, also include the exact supporting sentence in quotes immediately above or after the answer.
+- If multiple files were used, list them all in the Source line, separated by commas.
+- Be brief. For advice questions prefer one explicit next-step sentence plus the Source (two lines). Otherwise, limit to 2–3 sentences plus Source.
+"""
 
 
 def build_prompt(question: str, results) -> str:

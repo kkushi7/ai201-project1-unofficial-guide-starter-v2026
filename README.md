@@ -95,10 +95,16 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
      visible. Milestone 4. -->
 
 **Question:**
+How can you survive commuting time?
 
 **Answer:**
 
-```
+```(best distance 0.414, cutoff 0.6)
+
+You can survive commuting time by stacking your courses and treating the train as study time rather than dead time.
+Source: thread_commuting.txt
+
+Sources retrieved: thread_bike_commute.txt, thread_commuting.txt
 ```
 
 **My relevance cutoff:**
@@ -113,8 +119,18 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
      Milestone 4. -->
 
 | Question | In corpus? | Best distance |
-|---|---|---|
-|  |  |  |
+|Which lot area is best to park in?|Yes|0.520|
+|How can you survive communiting time?|Yes|0.414|
+|How fast do professors answer their emails?|Yes|0.240|
+|Which are the best study spots in the area?|Yes|0.380|
+|How can you change majors within the years?|Yes|0.341|
+|What is the capital of Mongolia?|No|0.864|
+|How do I change the oil in a diesel engine?|No|0.721|
+|Who won the 1994 World Cup?|No|0.862|
+|What is the recommended dosage of ibuprofen for a headache?|No|0.782|
+|How do I write a for loop in Rust?|No|0.843|
+
+Chose threshold 0.62 as it is the midpoint between max in corpus and min out corpus.
 
 ## How I Used AI
 
