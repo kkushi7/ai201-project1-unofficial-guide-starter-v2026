@@ -27,7 +27,7 @@ Kushi Kumbagowdana, Corpus: advice_threads
 
      Milestone 5. -->
 
-     I pIcked corpus advice_threads which answers questions that students have about college and how they should go about certain actions. It has short and simple answers within the threads which helps the readers get straight to the point and not worry about vague summarries to their simple questions. 
+     I pIcked corpus advice_threads which answers questions that students have about college and how they should go about doing certain things. It has short and simple answers within the threads which helps the readers get straight to the point and not worry about lengthy or vague summarries to their simple questions. It also gives advice on what actions to take which is helpful for the students to know right away.
 
 ## Chunking Strategy
 
@@ -44,7 +44,7 @@ Kushi Kumbagowdana, Corpus: advice_threads
 
      Milestone 3. -->
 
-I picked these numbers because this is an advice thread, so people tend to keep answers concise over having long paragraphs and short phrases as it requires more detail than that. 
+I picked these numbers because this is an advice thread, so people tend to keep answers concise over having long paragraphs and short phrases, as it still requires more detail than that. 
 
 ## Sample Chunks
 
@@ -130,7 +130,7 @@ Sources retrieved: thread_bike_commute.txt, thread_commuting.txt
 |What is the recommended dosage of ibuprofen for a headache?|No|0.782|
 |How do I write a for loop in Rust?|No|0.843|
 
-Chose threshold 0.62 as it is the midpoint between max in corpus and min out corpus.
+Chose threshold 0.62 as it is the midpoint between max in corpus(0.520) and min out corpus(0.721).
 
 ## How I Used AI
 
@@ -144,8 +144,11 @@ Chose threshold 0.62 as it is the midpoint between max in corpus and min out cor
      Milestone 5. -->
 
 **1.**
+I used Copilot to help me write the chunking function as it was something I struggled with understanding. I also had it explain to me what each line does so that I better understood the function and knew where to make tweaks to it if needed like with overlap of sentences. 
 
 **2.**
+I used Copilot to help explain the threshold as I was confused on how to pick a number. I was then able to understnad that using the midpoint of the highest in corpus and lowest out corpus is the best way of going about it as it gives a clear separation of what passed or got refused and how to choose tradeoffs in case of overlap.
+
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
