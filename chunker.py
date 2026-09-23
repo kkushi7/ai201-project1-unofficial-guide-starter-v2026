@@ -64,14 +64,14 @@ def fallback_split(
         start = 0
         index = 0
         while start < len(doc.text):
-            piece = doc.text[start : start + chunk_size].strip()
+            piece = doc.text[start: start + chunk_size].strip()
             if piece:
                 chunks.append(
                     Chunk(
                         text=piece,
                         source=doc.source,
                         index=index,
-                        produced_by="chunker.py::fallback_split",
+                        produced_by="chunker.py::split_documents",
                     )
                 )
                 index += 1
@@ -97,7 +97,71 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
       - Would splitting on paragraph breaks keep more thoughts intact than
         splitting on a character count?
     """
-    return fallback_split(documents)
+    try:
+        from nltk.tokenize import sent_tokenize
+        import nltk
+        nltk.data.find("tokenizers/punkt")
+    except Exception:
+        # fallback regex sentence splitter
+        import re
+
+        def sent_tokenize(text: str):
+            pieces = re.split(r'(?<=[.!?])\s+', text.strip())
+            return [s for s in pieces if s]
+
+    chunk_sentences = getattr(config, "CHUNK_SENTENCES", 2)
+    overlap_sentences = getattr(config, "CHUNK_OVERLAP_SENTENCES", 1)
+    if overlap_sentences >= chunk_sentences:
+        raise ValueError(
+            "overlap_sentences must be smaller than chunk_sentences")
+
+    chunks: list[Chunk] = []
+    for doc in documents:
+        sents = sent_tokenize(doc.text)
+        if not sents:
+            continue
+        # if doc shorter than window, emit whole text as one chunk
+        if len(sents) <= chunk_sentences:
+            chunks.append(
+                Chunk(
+                    text=" ".join(sents).strip(),
+                    source=doc.source,
+                    index=0,
+                    produced_by="chunker.py::split_documents",
+                )
+            )
+            continue
+
+        step = chunk_sentences - overlap_sentences
+        index = 0
+        for start in range(0, len(sents) - chunk_sentences + 1, step):
+            piece = " ".join(sents[start: start + chunk_sentences]).strip()
+            if piece:
+                chunks.append(
+                    Chunk(
+                        text=piece,
+                        source=doc.source,
+                        index=index,
+                        produced_by="chunker.py::split_documents",
+                    )
+                )
+                index += 1
+
+        # if the last sentences were not covered (tail), add a final chunk anchored at the end
+        last_covered = (len(sents) - chunk_sentences) // step * step
+        if last_covered + chunk_sentences < len(sents):
+            piece = " ".join(sents[-chunk_sentences:]).strip()
+            if not chunks or chunks[-1].text != piece:
+                chunks.append(
+                    Chunk(
+                        text=piece,
+                        source=doc.source,
+                        index=index,
+                        produced_by="chunker.py::split_documents",
+                    )
+                )
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:

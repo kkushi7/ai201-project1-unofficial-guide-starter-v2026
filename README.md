@@ -57,29 +57,36 @@ I picked these numbers because this is an advice thread, so people tend to keep 
 
      Milestone 3. -->
 
-**Chunk 1** — source: `` — produced by: ``
+**Chunk 1** — source: `thread_bike_commute.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
+THREAD: Is a bike worth it for a 20 minute walk commute? --- reply 1 (14 votes) ---
+Yeah.
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: `thread_first_gen.txt#2` — produced by: `chunker.py::split_documents`
 
 ```
+Ask for it by name. --- reply 2 (41 votes) ---
+The thing I'd say: the unwritten rules are the hard part, not the coursework.
 ```
 
-**Chunk 3** — source: `` — produced by: ``
+**Chunk 3** — source: `thread_laptop_specs.txt#5` — produced by: `chunker.py::split_documents`
 
-```
-```
-
-**Chunk 4** — source: `` — produced by: ``
-
-```
+```--- reply 3 (12 votes) ---
+I did two years on an 8GB machine and it was fine until the last project, at which point it very much wasn't. 16 is the answer.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 4** — source: `thread_parking.txt#1` — produced by: `chunker.py::split_documents`
 
+```--- reply 1 (15 votes) ---
+West lots sell out in about three days in August. East lot never sells out but it's a 12 minute walk, at which point you might as well have parked on the street.
 ```
+
+**Chunk 5** — source: `thread_roommate_conflict.txt#5` — produced by: `chunker.py::split_documents`
+
+```--- reply 3 (33 votes) ---
+Write down specifics before the meeting. 'It's not working' is hard to act on; 'guests four nights a week past 2am' is not.
 ```
 
 ## Sample Answer
