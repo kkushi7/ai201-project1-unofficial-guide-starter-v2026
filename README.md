@@ -177,15 +177,60 @@ I used Copilot to help explain the threshold as I was confused on how to pick a 
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 0/5 | 0/5 | 0/5 | Missed |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 4. When I ask a question, my document would return the answer in chunks of 1 or 2 sentences, not long paragraphs.| 4 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 5. For at least 4 of 5 test questions that ask for advice, it returns a single next step action, like one sentence, and cites the thread filename that contains that step.| 4 of 5 | 1/5 | 1/5 | 1/5 | Missed |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+1. ### Which lot area is best to park in? — run 1
+
+- Best distance: 0.5199 (passed the gate)
+- Sources retrieved: thread_bike_commute.txt, thread_parking.txt
+
+```
+I don't have enough information in the provided documents to answer that.
+
+2. ### Which lot area is best to park in? — run 1
+
+- Best distance: 0.5199 (passed the gate)
+- Sources retrieved: thread_bike_commute.txt, thread_parking.txt
+
+```
+I don't have enough information in the provided documents to answer that.
+
+3. Out-of-scope questions (the gate should refuse these):
+  refused  (best distance 0.864)  What is the capital of Mongolia?
+  refused  (best distance 0.721)  How do I change the oil in a diesel engine?
+  refused  (best distance 0.862)  Who won the 1994 World Cup?
+  refused  (best distance 0.782)  What is the recommended dosage of ibuprofen for a headache?
+  refused  (best distance 0.843)  How do I write a for loop in Rust?
+  -> gate refused 5 of 5
+
+4. ### How fast do professors answer their emails? — run 1
+
+- Best distance: 0.2400 (passed the gate)
+- Sources retrieved: thread_late_work.txt, thread_professor_email.txt
+
+```
+How fast professors answer email varies enormously. If the syllabus states a response window, it is honored; otherwise, you should assume 48 hours.
+
+Source: thread_professor_email.txt
+
+5. ### How can you change majors within the years? — run 1
+
+- Best distance: 0.3406 (passed the gate)
+- Sources retrieved: thread_changing_major.txt, thread_transfer_credits.txt
+
+```
+Administratively, changing your major is trivial because it is just a form, and you should talk to the department adviser for the major you want.
+
+Source: thread_changing_major.txt
+
 
 ## Verdicts
 
