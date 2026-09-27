@@ -245,11 +245,12 @@ Source: thread_changing_major.txt
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | Missed | For three of the questions I asked, it was not able to retrieve the answers even though they were presnet within the thread. |
+| 2 | Every answer names a source | Met | For each question, it was able to state where the source was retrieved from, even the questions it did not answer. |
+| 3 | Gate stops out-of-corpus questions | Met | For each out of scope question, it automatically refused and did not answer the questions. |
+| 4 | When I ask a question, my document would return the answer in chunks of 1 or 2 sentences, not long paragraphs. | Met | All the answers to the question asked were given with a sentence or 2 and are all understandable as well. |
+| 5 | For at least 4 of 5 test questions that ask for advice, it returns a single next step action, like one sentence, and cites the thread filename that contains that step. | Missed | Some of the questions asked did not have an action to take so this caused it to be missed with some of the questions. |
+5. Revised: For at least 4 of 5 advice questions, the answer contains one action verb and one source filename, and is no longer than 2 sentences. Why: The original criterion asked whether an answer felt actionable which is not something you can measure exactly. The new version checks features in the text so the result can now be scored consistently. 
 
 ## Diagnoses
 
