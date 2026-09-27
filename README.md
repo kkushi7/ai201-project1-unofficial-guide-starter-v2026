@@ -149,6 +149,9 @@ I used Copilot to help me write the chunking function as it was something I stru
 **2.**
 I used Copilot to help explain the threshold as I was confused on how to pick a number. I was then able to understnad that using the midpoint of the highest in corpus and lowest out corpus is the best way of going about it as it gives a clear separation of what passed or got refused and how to choose tradeoffs in case of overlap.
 
+**3**
+I used Copilot to help me understand how to go about fixing my criterias as well as what stage was it being messed up it as, it was a bit difficult to trace down. It helped me understand better why the certain stages were failing compared to what I thought and helped me discover as well where my actual issues laid then what was presented to me. I now know for the future where the actual issues lie and how to go about fixing them by myself first.
+
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
@@ -318,9 +321,13 @@ The fix did help a bit as I change the search function within store.py and it in
 
      Milestone 5. -->
 
+My criterion 1 and 5 are still broken. Since I only focused on criterion 1 for my one fix, I would still need to dive deeper into criterion 5 to go about fixing it. From my chnages however, I was able to see what needs to be fixed in criterion 1 which was my score function. I found out about this after focusing on fixing the retrieval stage which was where I thought the main problem would be and it took a good while in order to understand why this particular stage and function, so that is why I stopped there, as we were supposed to also only focus on one fix over multiple. Now when coming back to this project in the future, I know what the issue is and am able to tackle the function that actually is the problem. 
+
 ## What I'd Do Differently
 
 <!-- Knowing what you know now — which of your five criteria would you write
      differently, and why?
 
      Milestone 5. -->
+
+I would write my criteria 5 differently as it is more hard to judge with its subjective wording. For the criteria, I had it more focused on what feels actionable instead of having  strict objective wording for the results, so this caused the scoring to be off. By incorporating better action verbs, the ouput would be able to be scored properly and pass the criteria.
