@@ -17,6 +17,9 @@ rest of the project if they were wrong:
    install needs neither PyTorch nor a reachable Hugging Face. See `_embedder`.
 """
 
+from rank_bm25 import BM25Okapi
+from chunker import Chunk
+import config
 import os
 import shutil
 from dataclasses import dataclass
@@ -28,9 +31,6 @@ from dataclasses import dataclass
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
 
 import chromadb  # noqa: E402
-
-import config
-from chunker import Chunk
 
 
 @dataclass
@@ -164,7 +164,7 @@ def build_index(
 
     batch = 256
     for start in range(0, len(chunks), batch):
-        window = chunks[start : start + batch]
+        window = chunks[start: start + batch]
         collection.add(
             ids=[f"{c.source}#{c.index}" for c in window],
             documents=[c.text for c in window],
@@ -199,25 +199,62 @@ def search(
             f"No index called '{name}'. Run `python app.py index` first."
         ) from exc
 
-    raw = collection.query(
+    # 1) semantic search
+    semantic = collection.query(
         query_embeddings=embed([question]),
-        n_results=min(top_k, collection.count()),
+        n_results=min(top_k * 2, collection.count()),
     )
 
-    results: list[Result] = []
+    results_by_key: dict[str, Result] = {}
+
     for text, meta, distance in zip(
-        raw["documents"][0], raw["metadatas"][0], raw["distances"][0]
+        semantic["documents"][0],
+        semantic["metadatas"][0],
+        semantic["distances"][0],
     ):
-        results.append(
-            Result(
-                text=text,
-                source=str(meta.get("source", "unknown")),
-                label=f"{meta.get('source', 'unknown')}#{meta.get('index', 0)}",
-                distance=float(distance),
-                produced_by=str(meta.get("produced_by", "unknown")),
-            )
+        key = f"{meta.get('source', 'unknown')}#{meta.get('index', 0)}"
+        results_by_key[key] = Result(
+            text=text,
+            source=str(meta.get("source", "unknown")),
+            label=f"{meta.get('source', 'unknown')}#{meta.get('index', 0)}",
+            distance=float(distance),
+            produced_by=str(meta.get("produced_by", "unknown")),
         )
-    return results
+
+    # 2) keyword/BM25 search
+    all_docs = collection.get(
+        include=["documents", "metadatas"],
+        limit=collection.count(),
+    )
+
+    if all_docs.get("documents"):
+        tokenized_docs = [str(d).lower().split()
+                          for d in all_docs["documents"]]
+        tokenized_question = [t for t in question.lower().split() if t]
+
+        if tokenized_question and tokenized_docs:
+            bm25 = BM25Okapi(tokenized_docs)
+            scores = bm25.get_scores(tokenized_question)
+
+            for idx, score in enumerate(scores):
+                if score <= 0:
+                    continue
+
+                meta = all_docs["metadatas"][idx]
+                key = f"{meta.get('source', 'unknown')}#{meta.get('index', 0)}"
+
+                if key not in results_by_key:
+                    results_by_key[key] = Result(
+                        text=str(all_docs["documents"][idx]),
+                        source=str(meta.get("source", "unknown")),
+                        label=f"{meta.get('source', 'unknown')}#{meta.get('index', 0)}",
+                        distance=0.9,  # keyword-only hit, weaker than semantic
+                        produced_by=str(meta.get("produced_by", "unknown")),
+                    )
+
+    # 3) sort by distance and return exactly top_k
+    results = sorted(results_by_key.values(), key=lambda r: r.distance)
+    return results[:top_k]
 
 
 def index_exists(corpus: str | None = None, variant: str = "default") -> bool:

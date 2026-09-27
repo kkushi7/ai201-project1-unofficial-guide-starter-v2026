@@ -278,9 +278,9 @@ Source: thread_changing_major.txt
 ## The Improvement
 
 **What I changed:**
-
+I decide to change criterion 1 with hybrid search in store.py.
 **Why I picked it:**
-
+I picked this as it focuses on the retrieval stage as diagnosed, so the answers are within the courpus but are not making it into the top results. It follows the pattern of how the system refuses or answers vaguely since the relevant chunks did not surface. 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
 
@@ -291,11 +291,11 @@ Source: thread_changing_major.txt
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 0/5 | 0/5 | 0/5 | Missed |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 4. When I ask a question, my document would return the answer in chunks of 1 or 2 sentences, not long paragraphs.| 4 of 5 | 5/5 | 5/5 | 5/5 | Met |
+| 5. For at least 4 of 5 test questions that ask for advice, it returns a single next step action, like one sentence, and cites the thread filename that contains that step.| 4 of 5 | 1/5 | 1/5 | 1/5 | Missed |
 
 **Did it help?**
 
@@ -305,6 +305,8 @@ Source: thread_changing_major.txt
      tell.
 
      Milestone 4. -->
+
+The fix did help a bit as I change the search function within store.py and it inproved the output quality, however the criteria still missed due to the questions failing because of the scoring method I chose. Since we were focused on choosing one fix, I decided to try and change the retrieval stage that criteria 1 was diagnosed with. After fixing that, it made it somewhat better, however it was till failing, so I looked more into it and was then able to see that retrieval was not the main cause, but instead it was the scoring method I chose. So I now know that the fix to be made in the future should be towards my socring function as it is restrictive by focusing on substrings instead of key ideas, which my questions are looking more for, and could help them pass and get to the retrieval stage to fulfil criteria 1.
 
 ## What's Still Broken
 
