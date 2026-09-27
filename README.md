@@ -190,7 +190,7 @@ I used Copilot to help me understand how to go about fixing my criterias as well
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
 
-1. ### Which lot area is best to park in? — run 1
+Criterion 1. ### Which lot area is best to park in? — run 1
 
 - Best distance: 0.5199 (passed the gate)
 - Sources retrieved: thread_bike_commute.txt, thread_parking.txt
@@ -198,7 +198,7 @@ I used Copilot to help me understand how to go about fixing my criterias as well
 ```
 I don't have enough information in the provided documents to answer that.
 
-2. ### Which lot area is best to park in? — run 1
+Criterion 2. ### Which lot area is best to park in? — run 1
 
 - Best distance: 0.5199 (passed the gate)
 - Sources retrieved: thread_bike_commute.txt, thread_parking.txt
@@ -206,7 +206,7 @@ I don't have enough information in the provided documents to answer that.
 ```
 I don't have enough information in the provided documents to answer that.
 
-3. Out-of-scope questions (the gate should refuse these):
+Criterion 3. Out-of-scope questions (the gate should refuse these):
   refused  (best distance 0.864)  What is the capital of Mongolia?
   refused  (best distance 0.721)  How do I change the oil in a diesel engine?
   refused  (best distance 0.862)  Who won the 1994 World Cup?
@@ -214,7 +214,7 @@ I don't have enough information in the provided documents to answer that.
   refused  (best distance 0.843)  How do I write a for loop in Rust?
   -> gate refused 5 of 5
 
-4. ### How fast do professors answer their emails? — run 1
+Criterion 4. ### How fast do professors answer their emails? — run 1
 
 - Best distance: 0.2400 (passed the gate)
 - Sources retrieved: thread_late_work.txt, thread_professor_email.txt
@@ -224,7 +224,7 @@ How fast professors answer email varies enormously. If the syllabus states a res
 
 Source: thread_professor_email.txt
 
-5. ### How can you change majors within the years? — run 1
+Criterion 5. ### How can you change majors within the years? — run 1
 
 - Best distance: 0.3406 (passed the gate)
 - Sources retrieved: thread_changing_major.txt, thread_transfer_credits.txt
