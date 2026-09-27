@@ -271,6 +271,9 @@ Source: thread_changing_major.txt
      low, and which one you'd tighten and to what.
 
      Milestone 3. -->
+     Missed:
+     - Criterion 1: Retrieval stage; the answer exists in the corpus however, the top chunks did not surface the eact answer sentence early enough in the retrieval step, so generation had no usable fact to answer the questions with.
+     - Criterion 5: Generation stage; The retrieval step usually finds relevant threads however, the model turns them into explanations instead of single actionable steps which was not the required output format, so the answers failed the criterion.
 
 ## The Improvement
 
